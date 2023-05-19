@@ -168,6 +168,7 @@ Board.prototype.validMoves = function (color) {
  * Checks if there are any valid moves for the given color.
  */
 Board.prototype.hasMove = function (color) {
+  return (this.validMoves(color).length >= 1) ? true : false; 
 };
 
 
@@ -177,6 +178,8 @@ Board.prototype.hasMove = function (color) {
  * the black player are out of moves.
  */
 Board.prototype.isOver = function () {
+  if(!this.hasMove("black") && !this.hasMove("white")) return true;
+  return false 
 };
 
 
@@ -186,6 +189,18 @@ Board.prototype.isOver = function () {
  * Prints a string representation of the Board to the console.
  */
 Board.prototype.print = function () {
+  for(let i = 0; i < 8; i++){
+    let line = "";
+    for(let j = 0; j < 8; j++) {
+      if(this.getPiece([i,j])) {
+        line += this.getPiece([i,j]).toString();
+      }
+      else {
+        line += " ";
+      }
+    }
+    console.log(line)
+  }
 };
 
 
